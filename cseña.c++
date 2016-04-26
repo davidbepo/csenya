@@ -16,9 +16,17 @@ cout << "**************************************\n"
 
 
 if(argc <= 1){
-	cout << "¿de cuantos caracteres kieres la contraseña?: "; cin >> num;
+	cout << "¿de cuantos caracteres quieres la contraseña?: "; cin >> num;
 }else
 	num = atoi(argv[1]);
+
+if(num<7){
+	cout << "la contraseña es muy corta ¿quieres continuar?: "; cin >> continuar;
+	if(continuar == "s" or continuar == "S" or continuar == "si")
+		cout << "\ncontinuando \n";
+	else
+		return 1;
+}
 
 random_device rd;
 default_random_engine rng(rd());
@@ -29,14 +37,14 @@ for(int a=0;a<num;a++){
 	contrasena += caracter;
 }
 
-cout << contrasena << "\n\n";
+cout << '\n' << contrasena << "\n\n";
 
 if(argc <= 2){
-	cout << "guardar la contraseña en un archivo? s/N: "; cin >> continuar;
+	cout << "¿guardar la contraseña en un archivo? s/n: "; cin >> continuar;
 }else
 	continuar = "s";
 
-if(continuar == "s" or continuar == "S"){
+if(continuar == "s" or continuar == "S" or continuar == "si"){
 	if(argc > 2)
 		archivo = argv[2];
 	else{
